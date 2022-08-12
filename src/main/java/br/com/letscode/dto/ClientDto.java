@@ -9,15 +9,8 @@ public class ClientDto {
     public int age;
     public String vat;
     public String email;
+    public String categoriaNome;
 
-
-
-//    public ClientDto(String name, int age, String vat, String email) {
-//        this.name = name;
-//        this.age = age;
-//        this.vat = vat;
-//        this.email = email;
-//    }
 
     public String getName() {
         return name;
@@ -49,6 +42,14 @@ public class ClientDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCategoriaNome() {
+        return categoriaNome;
+    }
+
+    public void setCategoriaNome(String categoriaNome) {
+        this.categoriaNome = categoriaNome;
     }
 
     @Override

@@ -1,7 +1,8 @@
 package br.com.letscode.rest;
 
-import br.com.letscode.dto.ClientDto;
+import br.com.letscode.form.ClientForm;
 import br.com.letscode.models.Client;
+import br.com.letscode.services.CategoriaService;
 import br.com.letscode.services.ClientService;
 import org.eclipse.microprofile.opentracing.Traced;
 
@@ -35,8 +36,8 @@ public class ClientResource {
     }
 
     @POST
-    public Response createClient(@Valid Client client) throws Exception {
-        return  Response.status(Response.Status.CREATED).entity(service.createClient(client)).build();
+    public Response createClient(@Valid ClientForm clientForm) throws Exception {
+        return  Response.status(Response.Status.CREATED).entity(service.createClient(clientForm)).build();
     }
 
     @PUT

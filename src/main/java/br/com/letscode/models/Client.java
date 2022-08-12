@@ -1,12 +1,6 @@
 package br.com.letscode.models;
 
-import br.com.letscode.dto.ClientDto;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
@@ -37,7 +31,10 @@ public class Client {
     @Email
     private String email;
 
-//    private Categoria categoria;
+    @NotNull
+    @ManyToOne
+    private Categoria categoria;
+
 
     public Long getId(){
         return id;
@@ -78,12 +75,12 @@ public class Client {
         this.email = email;
     }
 
-//    public Categoria getCategoria() {
-//        return categoria;
-//    }
-//
-//    public void setCategoria(Categoria categoria) {
-//        this.categoria = categoria;
-//    }
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
 

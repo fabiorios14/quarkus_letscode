@@ -2,25 +2,24 @@ package br.com.letscode.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Categoria {
 
     @Id
-    private int codigo;
+    private long codigo;
     private String nome;
 
-    public Categoria(){}
-    public Categoria(int codigo, String nome) {
-        this.codigo = codigo;
-        this.nome = nome;
-    }
+    @OneToMany(mappedBy = "id")
+    private List<Client> clients;
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -32,11 +31,11 @@ public class Categoria {
         this.nome = nome;
     }
 
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "codigo=" + codigo +
-                ", nome='" + nome + '\'' +
-                '}';
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 }

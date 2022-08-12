@@ -29,8 +29,16 @@ public class CategoriaResource {
     @Transactional
     public void init() throws Exception {
 
-        service.createCategoria(new Categoria(100, "Programador"));
-        service.createCategoria(new Categoria(200, "Comerciante"));
+        Categoria categoria1 = new Categoria();
+        categoria1.setCodigo(100);
+        categoria1.setNome("Programador");
+
+        Categoria categoria2 = new Categoria();
+        categoria2.setCodigo(200);
+        categoria2.setNome("Comerciante");
+
+        service.createCategoria(categoria1);
+        service.createCategoria(categoria2);
 
     }
 

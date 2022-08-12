@@ -1,9 +1,11 @@
 package br.com.letscode.services;
 
 import br.com.letscode.dto.ClientDto;
+import br.com.letscode.form.ClientForm;
+import br.com.letscode.models.Categoria;
 import br.com.letscode.models.Client;
+import br.com.letscode.repository.CategoriaRepository;
 import br.com.letscode.repository.ClientRepository;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.eclipse.microprofile.opentracing.Traced;
 import org.modelmapper.ModelMapper;
 
@@ -12,7 +14,6 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.NotFoundException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequestScoped
@@ -21,6 +22,9 @@ public class ClientService {
 
     @Inject
     ClientRepository clientRepository;
+
+    @Inject
+    CategoriaRepository categoriaRepository;
 
     public List<ClientDto> listClients() {
 
@@ -36,11 +40,27 @@ public class ClientService {
     }
 
     @Transactional
-    public Client createClient(Client client) throws Exception {
+    public ClientForm createClient(ClientForm clientForm) throws Exception {
+
+        Categoria categoria = categoriaRepository.findById(clientForm.getCategoriaCodigo());
+
+        System.out.println(categoria.getNome());
+
+        Client client = new Client();
+        client.setName(clientForm.getName());
+        client.setAge(clientForm.getAge());
+        client.setVat(clientForm.getVat());
+        client.setEmail(clientForm.getEmail());
+        client.setCategoria(categoria);
+
+        ModelMapper modelMapper = new ModelMapper();
+        ClientForm clientForm2 = modelMapper.map(client, ClientForm.class);
+
+        System.out.println(clientForm2);
 
         try {
             clientRepository.persist(client);
-            return client;
+            return clientForm2;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
