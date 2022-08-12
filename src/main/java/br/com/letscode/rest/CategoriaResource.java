@@ -1,9 +1,7 @@
 package br.com.letscode.rest;
 
 import br.com.letscode.models.Categoria;
-import br.com.letscode.models.Client;
 import br.com.letscode.services.CategoriaService;
-import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

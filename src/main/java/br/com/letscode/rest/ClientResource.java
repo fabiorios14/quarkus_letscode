@@ -2,7 +2,6 @@ package br.com.letscode.rest;
 
 import br.com.letscode.form.ClientForm;
 import br.com.letscode.models.Client;
-import br.com.letscode.services.CategoriaService;
 import br.com.letscode.services.ClientService;
 import org.eclipse.microprofile.opentracing.Traced;
 
@@ -17,7 +16,6 @@ import javax.ws.rs.core.Response;
 @Path("/client")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Traced
 public class ClientResource {
 
     @Inject
@@ -42,8 +40,8 @@ public class ClientResource {
 
     @PUT
     @Path("/{id}")
-    public Response updateClient(final @PathParam("id") long id, @Valid Client client) throws Exception  {
-        return Response.status(Response.Status.OK).entity(service.updateClient(id, client)).build();
+    public Response updateClient(final @PathParam("id") long id, @Valid ClientForm clientForm) throws Exception  {
+        return Response.status(Response.Status.OK).entity(service.updateClient(id, clientForm)).build();
     }
 
     @DELETE

@@ -6,7 +6,6 @@ import br.com.letscode.models.Categoria;
 import br.com.letscode.models.Client;
 import br.com.letscode.repository.CategoriaRepository;
 import br.com.letscode.repository.ClientRepository;
-import org.eclipse.microprofile.opentracing.Traced;
 import org.modelmapper.ModelMapper;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequestScoped
-@Traced
 public class ClientService {
 
     @Inject
@@ -34,8 +32,6 @@ public class ClientService {
                 .map(c -> modelMapper.map(c, ClientDto.class))
                 .collect(Collectors.toList());
 
-        //return clientRepository.findAll().project(ClientDto.class).stream().collect(Collectors.toList());
-        //return clientRepository.listAll();
         return listClient;
     }
 
@@ -43,8 +39,6 @@ public class ClientService {
     public ClientForm createClient(ClientForm clientForm) throws Exception {
 
         Categoria categoria = categoriaRepository.findById(clientForm.getCategoriaCodigo());
-
-        System.out.println(categoria.getNome());
 
         Client client = new Client();
         client.setName(clientForm.getName());
@@ -70,7 +64,6 @@ public class ClientService {
 
         try {
             Client client = clientRepository.findById(id);
-            //List<ClientDto> clientDto = clientRepository.find("id", id).project(ClientDto.class).stream().collect(Collectors.toList());
             ModelMapper modelMapper = new ModelMapper();
             ClientDto clientDto = modelMapper.map(client, ClientDto.class);
             return clientDto;
@@ -80,23 +73,28 @@ public class ClientService {
     }
 
     @Transactional
-    public Client updateClient(long id, Client client) {
+    public Client updateClient(long id, ClientForm clientForm) {
 
         Client entity = clientRepository.findById(id);
+        Categoria categoria = categoriaRepository.findById(clientForm.getCategoriaCodigo());
+
+        System.out.println(categoria.getNome());
+
         if (entity == null) {
             throw new NotFoundException();
         }
 
-        entity.setName(client.getName());
-        entity.setAge(client.getAge());
-        entity.setVat(client.getVat());
-        entity.setEmail(client.getEmail());
+        entity.setName(clientForm.getName());
+        entity.setAge(clientForm.getAge());
+        entity.setVat(clientForm.getVat());
+        entity.setEmail(clientForm.getEmail());
+        entity.setCategoria(categoria);
 
         return entity;
     }
 
     @Transactional
-    public void deleteClient(long id) throws Exception {
+    public void deleteClient(long id) {
 
         Client entity = clientRepository.findById(id);
         if(entity == null) {

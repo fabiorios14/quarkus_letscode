@@ -1,10 +1,7 @@
 package br.com.letscode.services;
 
 import br.com.letscode.models.Categoria;
-import br.com.letscode.models.Client;
 import br.com.letscode.repository.CategoriaRepository;
-import br.com.letscode.repository.ClientRepository;
-import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -13,7 +10,6 @@ import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @RequestScoped
-@Traced
 public class CategoriaService {
 
     @Inject
