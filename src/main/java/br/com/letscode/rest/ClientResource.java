@@ -1,10 +1,7 @@
 package br.com.letscode.rest;
 
 import br.com.letscode.form.ClientForm;
-import br.com.letscode.models.Client;
-import br.com.letscode.services.CategoriaService;
 import br.com.letscode.services.ClientService;
-import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
