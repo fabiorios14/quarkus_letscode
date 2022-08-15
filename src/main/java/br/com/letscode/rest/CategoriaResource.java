@@ -2,9 +2,12 @@ package br.com.letscode.rest;
 
 import br.com.letscode.models.Categoria;
 import br.com.letscode.services.CategoriaService;
+import io.quarkus.runtime.Startup;
+import io.quarkus.runtime.StartupEvent;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -17,14 +20,15 @@ import javax.ws.rs.core.Response;
 @Path("/categoria")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Startup
 public class CategoriaResource {
 
     @Inject
     CategoriaService service;
 
-    @PostConstruct
+
     @Transactional
-    public void init() throws Exception {
+    void onStart(@Observes StartupEvent ev) throws Exception {
 
         System.out.println("Chamou");
 
