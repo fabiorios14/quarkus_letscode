@@ -23,7 +23,6 @@ public class ClientService {
 
     @Inject
     CategoriaRepository categoriaRepository;
-
     public List<ClientDto> listClients() {
 
         ModelMapper modelMapper = new ModelMapper();
@@ -50,8 +49,6 @@ public class ClientService {
         ModelMapper modelMapper = new ModelMapper();
         ClientForm clientForm2 = modelMapper.map(client, ClientForm.class);
 
-        System.out.println(clientForm2);
-
         try {
             clientRepository.persist(client);
             return clientForm2;
@@ -77,8 +74,6 @@ public class ClientService {
 
         Client entity = clientRepository.findById(id);
         Categoria categoria = categoriaRepository.findById(clientForm.getCategoriaCodigo());
-
-        System.out.println(categoria.getNome());
 
         if (entity == null) {
             throw new NotFoundException();

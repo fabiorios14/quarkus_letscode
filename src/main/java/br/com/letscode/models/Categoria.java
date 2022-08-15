@@ -12,8 +12,8 @@ public class Categoria {
     private long codigo;
     private String nome;
 
-    @OneToMany(mappedBy = "id")
-    private List<Client> clients;
+//    @OneToMany(mappedBy = "id")
+//    private List<Client> clients;
 
     public long getCodigo() {
         return codigo;
@@ -31,11 +31,11 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
+//    public List<Client> getClients() {
+//        return clients;
+//    }
+//
+//    public void setClients(List<Client> clients) {
+//        this.clients = clients;
+//    }
 }

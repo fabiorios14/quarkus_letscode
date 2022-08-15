@@ -4,6 +4,7 @@ import br.com.letscode.models.Categoria;
 import br.com.letscode.services.CategoriaService;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -13,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-@RequestScoped
+@ApplicationScoped
 @Path("/categoria")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,10 +23,11 @@ public class CategoriaResource {
     @Inject
     CategoriaService service;
 
-
     @PostConstruct
     @Transactional
     public void init() throws Exception {
+
+        System.out.println("Chamou");
 
         Categoria categoria1 = new Categoria();
         categoria1.setCodigo(100);
