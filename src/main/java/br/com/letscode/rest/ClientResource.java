@@ -3,14 +3,14 @@ package br.com.letscode.rest;
 import br.com.letscode.form.ClientForm;
 import br.com.letscode.services.ClientService;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@RequestScoped
+@ApplicationScoped
 @Path("/client")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

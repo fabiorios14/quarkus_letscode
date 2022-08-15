@@ -2,7 +2,6 @@ package br.com.letscode.dto;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
-@RegisterForReflection
 public class ClientDto {
 
     public String name;

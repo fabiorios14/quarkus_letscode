@@ -2,9 +2,19 @@ package br.com.letscode.form;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
-@RegisterForReflection
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ClientForm {
 
+    @NotNull
+    @NotEmpty
+    @Size(
+            min = 5,
+            max = 100,
+            message = "O nome deve ter no minimo {min} e no maximo {max} caracteres"
+    )
     public String name;
     public int age;
     public String vat;
